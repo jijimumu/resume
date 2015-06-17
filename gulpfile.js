@@ -9,10 +9,10 @@ var uglify = require('gulp-uglify');
 var reactify = require('reactify');
 var jasmine = require('gulp-jasmine');
 var less = require('gulp-less');
-var lessImport = require('gulp-less-import');
 var path = require('path');
 var babel = require("gulp-babel");
 var babelify = require("babelify");
+
 // 環境變數
 var env = 'prod'; // dev||prod
 
@@ -28,20 +28,6 @@ var paths = {
     destDir: 'build',
     destCSS: 'build/assets/css'
 };
-
-gulp.task('material-ui-components', function () {
-    return gulp.src('./node_modules/material-ui/src/less/**/*.less')
-        .pipe(lessImport('components.less'))
-        .pipe(less())
-        .pipe(gulp.dest('./build/css'));
-});
-
-gulp.task('material-ui-scaffolding', function () {
-    return gulp.src('./node_modules/material-ui/src/less/**/*.less')
-        .pipe(lessImport('scaffolding.less'))
-        .pipe(less())
-        .pipe(gulp.dest('./build/css'));
-});
 
 
 function buildJS(boot, result){
@@ -177,18 +163,7 @@ gulp.task('minify-css', function() {
 });
 
 
-/**
- * 將 index.html 與 css/ 複製到 build/ 下面
- * 才方便測試
- */
-gulp.task('copy', function(){
-    gulp.src([ 'app/index.html' ], { base: 'app' } )
-    .pipe( gulp.dest(paths.destDir));
-    gulp.src([ 'app/master.html' ], { base: 'app' } )
-    .pipe( gulp.dest(paths.destDir));
-    gulp.src([ 'app/pompom.html' ], { base: 'app' } )
-    .pipe( gulp.dest(paths.destDir));
-});
+
 
 
 
@@ -216,7 +191,7 @@ gulp.task('unitTest',function(){
 /**
  * 初期讓 default 就是跑 dev task，將來可能會改成有 build, deploy 等花樣
  */
-gulp.task('default', ['portal']);
+gulp.task('default', ['resume']);
 
 /**
  * 編譯與打包 jsx 為一張檔案
@@ -225,5 +200,5 @@ gulp.task('default', ['portal']);
  */
 gulp.task('deployment', ['compress'] );
 
-gulp.task('portal', ['buildSPAFiles', 'minify-css', 'copy-portal', 'copy-assets-js', 'copy-bower', 'watch-portal'] );
+gulp.task('resume', ['buildSPAFiles', 'minify-css', 'copy-portal', 'copy-assets-js', 'copy-bower', 'watch-portal'] );
 
