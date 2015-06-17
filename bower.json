@@ -1,0 +1,16 @@
+{
+  "name": "Y",
+  "version": "0.0.0",
+  "authors": [
+    "Jim zhang"
+  ],
+  "description": "new",
+  "license": "MIT",
+  "dependencies": {
+    "paper-menu": "PolymerElements/paper-menu#1.0.0",
+    "polymer": "Polymer/polymer#1.0.0",
+    "paper-input": "PolymerElements/paper-input#1.0.0",
+    "paper-material": "PolymerElements/paper-material#1.0.0",
+    "paper-spinner": "PolymerElements/paper-spinner#^1.0.0"
+  }
+}
